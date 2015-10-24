@@ -10,15 +10,29 @@
 #define DeJong_hpp
 
 #include <stdio.h>
+#include <vector>
 #include "ofMain.h"
 
 class DeJong{
 public:
-    DeJong();
+    int intensity;
+    int iterations;
+    std::vector< std::vector<double> > density;
+    double maxDensity;
+    int N;
+    double xSeed;
+    double ySeed;
+    double x;
+    double y;
+    
+    DeJong(int size);
+    void clear();
     void seed();
-    void populate();
+    void populate(int samples);
     void reseed();
-    void plot();
+    void plot(int samples);
+    
+    ofImage screen;
 };
 
 #endif /* DeJong_hpp */
