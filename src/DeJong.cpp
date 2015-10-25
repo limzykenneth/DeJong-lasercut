@@ -7,22 +7,22 @@
 //
 
 #include "DeJong.hpp"
-#include <iostream>
 #include <algorithm>
 
-std::vector< std::vector<double> > density(700, std::vector<double> (700));
+std::vector< std::vector<double> > density;
 
 DeJong::DeJong(){
     intensity = 2;
     N = 700;
     iterations = 8000;
+    density.resize(N, std::vector<double> (N));
     reseed();
 }
 
 void DeJong::clear(){
     std::vector< std::vector<double> > results;
-    std::vector<double> results1(700, 0);
-    for (int i = 0; i < 700; i++) {
+    std::vector<double> results1(N, 0);
+    for (int i = 0; i < N; i++) {
         results.push_back(results1);
     }
     density = results;
@@ -66,12 +66,9 @@ void DeJong::plot(int samples){
     ofImage screen;
     double dens;
     ofColor white;
-    white.r = 255;
-    white.g = 255;
-    white.b = 255;
     populate(samples);
     
-    screen.grabScreen(0, 0, 700, 700);
+    screen.grabScreen(0, 0, N, N);
     
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {

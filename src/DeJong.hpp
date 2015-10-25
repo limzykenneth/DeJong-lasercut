@@ -17,7 +17,6 @@ class DeJong{
 public:
     int intensity;
     int iterations;
-//    std::vector< std::vector<double> > density;
     double maxDensity;
     int N;
     double xSeed;

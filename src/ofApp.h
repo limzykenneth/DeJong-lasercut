@@ -25,12 +25,6 @@ public:
     int steps;
     int start;
     int limit;
-    double mX;
-    double mY;
-    
-    void pause();
-    void record();
-    void resume();
     
     Boolean stopped;
     Boolean end;

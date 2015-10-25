@@ -8,7 +8,6 @@ void ofApp::setup(){
     steps = 0;
     start = 0;
     limit = 200;
-    
     stopped = false;
 }
 
@@ -26,25 +25,9 @@ void ofApp::draw(){
         steps += 1;
         dejong.plot(5);
         if (steps > limit){
-    //        stop loop
             end = true;
         }
     }
-}
-
-//--------------------------------------------------------------
-void ofApp::pause(){
-    stopped = true;
-    draw();
-}
-
-void ofApp::record(){
-
-}
-
-void ofApp::resume(){
-    stopped = false;
-    steps = 0;
 }
 
 //--------------------------------------------------------------
