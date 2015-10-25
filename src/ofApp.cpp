@@ -1,16 +1,13 @@
 #include "ofApp.h"
 
 //--------------------------------------------------------------
-DeJong dejong(700);
-
 void ofApp::setup(){
     ofBackground(0);
+    ofSetBackgroundAuto(false);
     end = false;
     steps = 0;
     start = 0;
     limit = 200;
-    mX = ofRandom(-500, 1000);
-    mY = ofRandom(-500, 1000);
     
     stopped = false;
 }
@@ -42,10 +39,7 @@ void ofApp::pause(){
 }
 
 void ofApp::record(){
-    if (stopped){
-        mX = ofRandom(-500, 1000);
-        mY = ofRandom(-500, 1000);
-    }
+
 }
 
 void ofApp::resume(){
@@ -80,7 +74,10 @@ void ofApp::mousePressed(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
+    ofBackground(0);
+    steps = 0;
+    end = false;
+    dejong.reseed();
 }
 
 //--------------------------------------------------------------

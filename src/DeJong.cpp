@@ -10,37 +10,39 @@
 #include <iostream>
 #include <algorithm>
 
-DeJong::DeJong(int size){
+std::vector< std::vector<double> > density(700, std::vector<double> (700));
+
+DeJong::DeJong(){
     intensity = 2;
-    N = size;
+    N = 700;
     iterations = 8000;
     reseed();
 }
 
 void DeJong::clear(){
     std::vector< std::vector<double> > results;
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            results[i][j] = 0;
-        }
+    std::vector<double> results1(700, 0);
+    for (int i = 0; i < 700; i++) {
+        results.push_back(results1);
     }
     density = results;
     maxDensity = 0;
 }
 
 void DeJong::seed(){
-    xSeed = ofRandom(-500, 1000) * 2 / N - 1;
-    ySeed = ofRandom(-500, 1000) * 2 / N - 1;
+    ofSeedRandom();
+    xSeed = (ofRandom(1000) * 2 / N - 1) * 0.02;
+    ySeed = (ofRandom(1000) * 2 / N - 1) * 0.02;
     x = N/2;
     y = N/2;
 }
 
 void DeJong::populate(int samples){
-    int _x;
-    int _y;
+    double _x;
+    double _y;
     for (int i = 0; i < samples * iterations; i++){
-        _x = ((sin(xSeed * x)) - (cos(ySeed * y)) * N * 0.2) + N / 2;
-        _y = ((sin(-xSeed * x)) - (cos(-ySeed * y)) * N * 0.2) + N / 2;
+        _x = ((sin(xSeed * y) - cos(ySeed * x)) * N * 0.2) + N/2;
+        _y = ((sin(-xSeed * x) - cos(-ySeed * y)) * N * 0.2) + N/2;
         
         density[round(_x)][round(_y)] += intensity;
         x = _x;
@@ -61,19 +63,19 @@ void DeJong::reseed(){
 }
 
 void DeJong::plot(int samples){
+    ofImage screen;
     double dens;
-    int idx;
+    ofColor white;
+    white.r = 255;
+    white.g = 255;
+    white.b = 255;
     populate(samples);
     
-    unsigned char * data;
-    data = screen.getPixels();
+    screen.grabScreen(0, 0, 700, 700);
     
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             dens = density[i][j];
-            idx = (i * N + j) * 4;
-            
-            data[idx + 3] = 255;
             
             if (dens <= 0){
                 continue;
@@ -81,8 +83,13 @@ void DeJong::plot(int samples){
             
             double light = (log(dens) / maxDensity) * 255;
             
-            data[idx] = data[idx+1] = data[idx+2] = light;
+            white.r = light;
+            white.g = light;
+            white.b = light;
+
+            screen.setColor(i, j, white);
         }
     }
+    screen.update();
     screen.draw(0,0);
 }

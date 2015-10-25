@@ -17,7 +17,7 @@ class DeJong{
 public:
     int intensity;
     int iterations;
-    std::vector< std::vector<double> > density;
+//    std::vector< std::vector<double> > density;
     double maxDensity;
     int N;
     double xSeed;
@@ -25,14 +25,12 @@ public:
     double x;
     double y;
     
-    DeJong(int size);
+    DeJong();
     void clear();
     void seed();
     void populate(int samples);
     void reseed();
     void plot(int samples);
-    
-    ofImage screen;
 };
 
 #endif /* DeJong_hpp */
