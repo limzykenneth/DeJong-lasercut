@@ -9,19 +9,19 @@
 #include "DeJong.hpp"
 #include <algorithm>
 
-std::vector< std::vector<double> > density;
+vector< vector<double> > density;
 
 DeJong::DeJong(){
     intensity = 2;
     N = 700;
     iterations = 8000;
-    density.resize(N, std::vector<double> (N));
+    density.resize(N, vector<double> (N));
     reseed();
 }
 
 void DeJong::clear(){
-    std::vector< std::vector<double> > results;
-    std::vector<double> results1(N, 0);
+    vector< vector<double> > results;
+    vector<double> results1(N, 0);
     for (int i = 0; i < N; i++) {
         results.push_back(results1);
     }
@@ -49,7 +49,7 @@ void DeJong::populate(int samples){
         y = _y;
     }
     
-    std::vector<double> results;
+    vector<double> results;
     for (int i = 0; i < density.size(); i++){
         results.push_back(*max_element(density[i].begin(), density[i].end()));
     }
@@ -80,9 +80,9 @@ void DeJong::plot(int samples){
             
             double light = (log(dens) / maxDensity) * 255;
             
-            white.r = light;
-            white.g = light;
-            white.b = light;
+            white.r = 255-light;
+            white.g = 255-light;
+            white.b = 255-light;
 
             screen.setColor(i, j, white);
         }

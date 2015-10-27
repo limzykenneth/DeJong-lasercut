@@ -2,13 +2,14 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofBackground(0);
-    ofSetBackgroundAuto(false);
+    ofBackground(255);
     end = false;
     steps = 0;
     start = 0;
     limit = 200;
     stopped = false;
+	
+	saveID = 0;
 }
 
 //--------------------------------------------------------------
@@ -25,14 +26,25 @@ void ofApp::draw(){
         steps += 1;
         dejong.plot(5);
         if (steps > limit){
-            end = true;
+			  end = true;
         }
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+	if (key == 's') {
+		string filename;
+		filename = "screen-"+ ofToString(saveID) + ".jpg";
+		ofSaveScreen(filename);
+		saveID++;
+		
+		mouseReleased(0, 0, 0);
+	}
+	
+	if (key == 'q'){
+		mouseReleased(0, 0, 0);
+	}
 }
 
 //--------------------------------------------------------------
@@ -57,7 +69,7 @@ void ofApp::mousePressed(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-    ofBackground(0);
+    ofBackground(255);
     steps = 0;
     end = false;
     dejong.reseed();
