@@ -14,7 +14,7 @@ vector< vector<double> > density;
 DeJong::DeJong(){
     intensity = 2;
     N = 1400;
-    iterations = 8000;
+    iterations = 4000;
     density.resize(N, vector<double> (N));
     reseed();
 }
@@ -30,7 +30,7 @@ void DeJong::clear(){
 }
 
 void DeJong::seed(){
-//    ofSeedRandom();
+    ofSeedRandom();
     xSeed = (ofRandom(1000) * 2 / N - 1) * 0.02;
     ySeed = (ofRandom(1000) * 2 / N - 1) * 0.02;
     x = N/2;
@@ -78,16 +78,11 @@ void DeJong::plot(int samples){
                 continue;
             }
             
-            double light = (log(dens) / maxDensity) * 400;
+            double light = (log(dens) / maxDensity) * 255;
             
-            double v = 255 - light;
-            if (v < 0){
-                v = 0;
-            }
-
-            white.r = v;
-            white.g = v;
-            white.b = v;
+            white.r = 255-light;
+            white.g = 255-light;
+            white.b = 255-light;
             
             screen.setColor(i, j, white);
         }
