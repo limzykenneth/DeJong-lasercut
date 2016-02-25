@@ -30,7 +30,7 @@ void DeJong::clear(){
 }
 
 void DeJong::seed(){
-    ofSeedRandom();
+//    ofSeedRandom();
     xSeed = (ofRandom(1000) * 2 / N - 1) * 0.02;
     ySeed = (ofRandom(1000) * 2 / N - 1) * 0.02;
     x = N/2;
@@ -78,13 +78,13 @@ void DeJong::plot(int samples){
                 continue;
             }
             
-            double light = (log(dens) / maxDensity) * 255;
+            double light = (log(dens) / maxDensity) * 300;
             
             double v = 300-light;
             if (v > 255){
-                v = 255;
+                v = 200 + light;
             }
-            
+
             white.r = v;
             white.g = v;
             white.b = v;
