@@ -25,7 +25,6 @@ public:
     int steps;
     int start;
     int limit;
-    
     int saveID;
     
     bool stopped;

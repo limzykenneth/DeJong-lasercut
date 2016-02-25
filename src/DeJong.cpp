@@ -40,7 +40,7 @@ void DeJong::seed(){
 void DeJong::populate(int samples){
     double _x;
     double _y;
-    for (int i = 0; i < samples * iterations; i++){
+    for (auto i = 0; i < samples * iterations; i++){
         _x = ((sin(xSeed * y) - cos(ySeed * x)) * N * 0.2) + N/2;
         _y = ((sin(-xSeed * x) - cos(-ySeed * y)) * N * 0.2) + N/2;
         
@@ -50,7 +50,7 @@ void DeJong::populate(int samples){
     }
     
     vector<double> results;
-    for (int i = 0; i < density.size(); i++){
+    for (auto i = 0; i < density.size(); i++){
         results.push_back(*max_element(density[i].begin(), density[i].end()));
     }
     maxDensity = log(*max_element(results.begin(), results.end()));
@@ -70,8 +70,8 @@ void DeJong::plot(int samples){
     
     screen.grabScreen(0, 0, N, N);
     
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
+    for (auto i = 0; i < N; i++) {
+        for (auto j = 0; j < N; j++) {
             dens = density[i][j];
             
             if (dens <= 0){
