@@ -4,12 +4,12 @@
 #include "DeJong.hpp"
 
 class ofApp : public ofBaseApp{
-
+    
 public:
     void setup();
     void update();
     void draw();
-
+    
     void keyPressed(int key);
     void keyReleased(int key);
     void mouseMoved(int x, int y );
@@ -21,12 +21,12 @@ public:
     void gotMessage(ofMessage msg);
     
     DeJong dejong;
-		
+    
     int steps;
     int start;
     int limit;
-	
-	int saveID;
+    
+    int saveID;
     
     Boolean stopped;
     Boolean end;

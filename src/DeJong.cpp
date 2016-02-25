@@ -13,7 +13,7 @@ vector< vector<double> > density;
 
 DeJong::DeJong(){
     intensity = 2;
-    N = 700;
+    N = 1400;
     iterations = 8000;
     density.resize(N, vector<double> (N));
     reseed();
@@ -83,7 +83,7 @@ void DeJong::plot(int samples){
             white.r = 255-light;
             white.g = 255-light;
             white.b = 255-light;
-
+            
             screen.setColor(i, j, white);
         }
     }
