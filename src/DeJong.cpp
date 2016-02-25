@@ -12,9 +12,9 @@
 vector< vector<double> > density;
 
 DeJong::DeJong(){
-    intensity = 2;
+    intensity = 1;
     N = 1400;
-    iterations = 2000;
+    iterations = 8000;
     density.resize(N, vector<double> (N));
     reseed();
 }
