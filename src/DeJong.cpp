@@ -78,11 +78,11 @@ void DeJong::plot(int samples){
                 continue;
             }
             
-            double light = (log(dens) / maxDensity) * 300;
+            double light = (log(dens) / maxDensity) * 400;
             
-            double v = 300-light;
-            if (v > 255){
-                v = 200 + light;
+            double v = 255 - light;
+            if (v < 0){
+                v = 0;
             }
 
             white.r = v;
