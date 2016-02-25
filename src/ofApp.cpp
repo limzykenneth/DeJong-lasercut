@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(255);
+    ofSetFrameRate(240);
     end = false;
     steps = 0;
     start = 0;
