@@ -80,9 +80,14 @@ void DeJong::plot(int samples){
             
             double light = (log(dens) / maxDensity) * 255;
             
-            white.r = 255-light;
-            white.g = 255-light;
-            white.b = 255-light;
+            double v = 300-light;
+            if (v > 255){
+                v = 255;
+            }
+            
+            white.r = v;
+            white.g = v;
+            white.b = v;
             
             screen.setColor(i, j, white);
         }
