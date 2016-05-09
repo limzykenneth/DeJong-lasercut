@@ -28,6 +28,6 @@ public:
     
     int saveID;
     
-    Boolean stopped;
-    Boolean end;
+    bool stopped;
+    bool end;
 };
