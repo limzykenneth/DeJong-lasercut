@@ -29,6 +29,8 @@ bin/DeJong.app/
 *.exe
 *.out
 *.app
+obj/
+bin/
 
 # Xcode
 #
